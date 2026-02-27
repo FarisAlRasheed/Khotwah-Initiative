@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khotwah – Take Your First Step</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Segoe UI', 'Inter', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50:  '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', Inter, Arial, sans-serif; }
+    .nav-link {
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #f97316;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .card-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
+    }
+    .section-divider {
+      width: 64px;
+      height: 4px;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- ============================================================
+       STICKY NAVIGATION BAR
+  ============================================================ -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 text-primary-800 font-black text-2xl tracking-tight select-none">
+          <span class="bg-primary-700 text-white rounded-lg px-2 py-0.5">K</span>
+          <span>hotwah</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600">
+          <li><a href="#about"      class="nav-link hover:text-primary-700">About</a></li>
+          <li><a href="#goals"      class="nav-link hover:text-primary-700">Goals</a></li>
+          <li><a href="#mission"    class="nav-link hover:text-primary-700">Mission</a></li>
+          <li><a href="#products"   class="nav-link hover:text-primary-700">Programs</a></li>
+          <li><a href="#experience" class="nav-link hover:text-primary-700">Experience</a></li>
+          <li><a href="#contact"    class="nav-link hover:text-primary-700">Contact</a></li>
+        </ul>
+
+        <!-- Language Toggle + CTA -->
+        <div class="flex items-center gap-3">
+          <a href="index.html"
+             class="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-primary-700 border border-primary-200 rounded-full px-3 py-1.5 hover:bg-primary-50 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            العربية
+          </a>
+          <a href="registration.html"
+             class="bg-accent-500 hover:bg-accent-600 text-white text-sm font-bold rounded-lg px-4 py-2 transition-colors shadow-sm">
+            Enroll Now
+          </a>
+
+          <!-- Mobile hamburger -->
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-gray-100 mt-1">
+        <ul class="flex flex-col gap-1 pt-3 text-sm font-medium text-gray-700">
+          <li><a href="#about"      class="block py-2 px-3 rounded-lg hover:bg-gray-50">About</a></li>
+          <li><a href="#goals"      class="block py-2 px-3 rounded-lg hover:bg-gray-50">Goals</a></li>
+          <li><a href="#mission"    class="block py-2 px-3 rounded-lg hover:bg-gray-50">Mission</a></li>
+          <li><a href="#products"   class="block py-2 px-3 rounded-lg hover:bg-gray-50">Programs</a></li>
+          <li><a href="#experience" class="block py-2 px-3 rounded-lg hover:bg-gray-50">Experience</a></li>
+          <li><a href="#contact"    class="block py-2 px-3 rounded-lg hover:bg-gray-50">Contact</a></li>
+          <li class="pt-2">
+            <a href="index.html" class="block py-2 px-3 rounded-lg text-primary-700 font-semibold hover:bg-primary-50">🌐 العربية</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section class="hero-gradient text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Text -->
+        <div class="space-y-6">
+          <span class="inline-block bg-white/15 text-white text-xs font-bold uppercase tracking-widest rounded-full px-4 py-1.5 border border-white/25">
+            Student Initiative 🚀
+          </span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+            Your First Step Into
+            <span class="text-accent-400"> the Real World</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-blue-100 leading-relaxed max-w-lg">
+            Khotwah is a student-led initiative that places university students inside real companies during holiday breaks — because true learning begins beyond the classroom walls.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="registration.html"
+               class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold text-base rounded-xl px-7 py-3.5 shadow-lg hover:shadow-xl transition-all">
+              Enroll Now
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a href="#about"
+               class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-base rounded-xl px-7 py-3.5 border border-white/30 transition-all">
+              Learn More
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-8 pt-4 border-t border-white/20">
+            <div>
+              <p class="text-3xl font-black text-accent-400">200+</p>
+              <p class="text-sm text-blue-200">Students Impacted</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-accent-400">30+</p>
+              <p class="text-sm text-blue-200">Partner Companies</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-accent-400">5</p>
+              <p class="text-sm text-blue-200">Completed Cohorts</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-white/10 rounded-3xl blur-2xl"></div>
+          <img src="https://source.unsplash.com/800x600/?students,working,office"
+               alt="Students in a corporate environment"
+               class="relative rounded-2xl shadow-2xl w-full object-cover h-80 lg:h-[460px]"
+               loading="eager" />
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
+            <div class="bg-green-100 rounded-full p-2">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">Latest Cohort</p>
+              <p class="text-sm font-bold text-gray-800">Summer 2025 — Complete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+  ============================================================ -->
+  <section id="about" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+        <!-- Image -->
+        <div class="relative">
+          <div class="absolute top-6 left-6 w-full h-full bg-primary-100 rounded-2xl -z-10 -translate-x-3 translate-y-3"></div>
+          <img src="https://source.unsplash.com/700x500/?university,students,campus"
+               alt="University students on campus"
+               class="rounded-2xl shadow-lg w-full object-cover h-72 lg:h-96" />
+        </div>
+
+        <!-- Text -->
+        <div class="space-y-5">
+          <span class="text-accent-500 font-bold text-sm uppercase tracking-widest">About Us</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-gray-900 leading-snug">
+            Bridging the Gap Between Academia and Industry
+          </h2>
+          <div class="section-divider mb-1"></div>
+          <p class="text-gray-600 leading-relaxed text-base">
+            Khotwah is a volunteer-driven student initiative born from a firm belief that university students deserve more than textbooks and lectures. We believe that hands-on experience is the cornerstone that transforms a student from a passive knowledge consumer into a confident decision-maker.
+          </p>
+          <p class="text-gray-600 leading-relaxed text-base">
+            Through partnerships with leading companies across diverse sectors, we give university students the opportunity to immerse themselves in a real work environment during their winter and summer breaks. Students work alongside seasoned professionals, learn from real challenges, and discover their true potential beyond the four walls of academia.
+          </p>
+          <p class="text-gray-600 leading-relaxed text-base">
+            What sets Khotwah apart is that it is not a conventional internship program — it is a transformative life experience that reshapes how students see themselves and the professional world around them, preparing them to hit the ground running the moment they graduate.
+          </p>
+          <a href="#goals" class="inline-flex items-center gap-2 text-primary-700 font-bold hover:text-primary-800 transition-colors">
+            Discover our goals
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GOALS SECTION
+  ============================================================ -->
+  <section id="goals" class="py-20 lg:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-500 font-bold text-sm uppercase tracking-widest">What We Strive For</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-gray-900">Our Core Goals</h2>
+        <div class="section-divider mx-auto mt-4"></div>
+        <p class="mt-5 text-gray-500 text-base leading-relaxed">
+          Each goal represents a concrete step toward building a generation of students equipped with the tools and confidence to compete and thrive in today's job market.
+        </p>
+      </div>
+
+      <!-- Goals Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Goal 1 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 text-center space-y-4">
+          <div class="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="w-7 h-7 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-black text-gray-900">Professional Skills Development</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Equip students with the practical skills companies actually demand — from communication and teamwork to critical thinking and real-world problem solving that no classroom can fully replicate.
+          </p>
+        </div>
+
+        <!-- Goal 2 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 text-center space-y-4">
+          <div class="w-14 h-14 bg-accent-400/15 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="w-7 h-7 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-black text-gray-900">Building a Professional Network</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Empower students to forge genuine connections with industry leaders and decision-makers, opening doors and opportunities that are simply impossible to find within campus boundaries alone.
+          </p>
+        </div>
+
+        <!-- Goal 3 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 text-center space-y-4">
+          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-black text-gray-900">Early Career Orientation</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Help students identify the right career path well before graduation, significantly reducing post-graduation job search time while boosting their self-confidence and the clarity of their future decisions.
+          </p>
+        </div>
+
+        <!-- Goal 4 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 text-center space-y-4">
+          <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="w-7 h-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-black text-gray-900">Igniting a Culture of Initiative</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Cultivate a proactive mindset that inspires students to create opportunities rather than wait for them — through field experiences that awaken their latent drive and entrepreneurial spirit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MISSION SECTION
+  ============================================================ -->
+  <section id="mission" class="py-20 lg:py-28 bg-primary-900 text-white relative overflow-hidden">
+
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-y-1/2 -translate-x-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-72 h-72 bg-white rounded-full translate-y-1/2 translate-x-1/2"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+      <span class="inline-block bg-accent-500/20 text-accent-400 text-xs font-bold uppercase tracking-widest rounded-full px-4 py-1.5 border border-accent-500/30">
+        Our Mission
+      </span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight">
+        Empowering Students Today
+        <br/>
+        <span class="text-accent-400">to Lead Tomorrow</span>
+      </h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="text-lg sm:text-xl text-blue-200 leading-relaxed max-w-3xl mx-auto">
+        Our mission at Khotwah is to ensure that every university student gains access to a meaningful, real-world work experience during their academic years — by creating a supportive ecosystem that brings together leading companies, seasoned mentors, and ambitious students on one shared journey toward excellence.
+      </p>
+      <p class="text-base text-blue-300 leading-relaxed max-w-2xl mx-auto">
+        We don't view students as interns filling a seat — we see them as future partners who deserve to be taken seriously, nurtured with intention, and given every tool they need to become agents of change and creativity in any organization they join.
+      </p>
+
+      <!-- Mission pillars -->
+      <div class="grid sm:grid-cols-3 gap-6 pt-6">
+        <div class="bg-white/8 rounded-2xl p-6 border border-white/10 text-center space-y-2">
+          <div class="text-3xl mb-2">🎯</div>
+          <h4 class="font-bold text-white text-base">Purposeful</h4>
+          <p class="text-blue-300 text-sm">Every experience is designed to achieve a clear, measurable learning outcome</p>
+        </div>
+        <div class="bg-white/8 rounded-2xl p-6 border border-white/10 text-center space-y-2">
+          <div class="text-3xl mb-2">🤝</div>
+          <h4 class="font-bold text-white text-base">Collaborative</h4>
+          <p class="text-blue-300 text-sm">A genuine three-way partnership between the student, the company, and academia</p>
+        </div>
+        <div class="bg-white/8 rounded-2xl p-6 border border-white/10 text-center space-y-2">
+          <div class="text-3xl mb-2">✨</div>
+          <h4 class="font-bold text-white text-base">Inspiring</h4>
+          <p class="text-blue-300 text-sm">Experiences that ignite passion and push students to discover their full potential</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCTS / PROGRAMS SECTION
+  ============================================================ -->
+  <section id="products" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-500 font-bold text-sm uppercase tracking-widest">What We Offer</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-gray-900">Our Programs & Offerings</h2>
+        <div class="section-divider mx-auto mt-4"></div>
+        <p class="mt-5 text-gray-500 text-base leading-relaxed">
+          We offer a diverse range of programs designed to meet the needs of students across all university stages and fields of study.
+        </p>
+      </div>
+
+      <!-- Programs -->
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Program 1: Company Tours -->
+        <div class="card-hover bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl overflow-hidden shadow-sm border border-primary-100">
+          <img src="https://source.unsplash.com/600x300/?office,corporate,building"
+               alt="Company Tours"
+               class="w-full h-44 object-cover" />
+          <div class="p-7 space-y-3">
+            <span class="text-xs font-bold text-primary-600 uppercase tracking-widest bg-primary-100 px-2 py-1 rounded-full">Company Tours</span>
+            <h3 class="text-xl font-black text-gray-900">Workplace Immersion Visits</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              We organize full-day field visits to leading companies across the tech, finance, and healthcare sectors. Students observe daily workflows, meet real teams, and directly experience the fundamental difference between academic theory and industry practice.
+            </p>
+            <ul class="space-y-1.5 text-sm text-gray-500">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>Full-day immersive visit</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>Includes a live Q&A session</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>Official participation certificate</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Program 2: Mentorship -->
+        <div class="card-hover bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl overflow-hidden shadow-sm border border-orange-100">
+          <img src="https://source.unsplash.com/600x300/?mentoring,coaching,professional"
+               alt="Professional Mentorship"
+               class="w-full h-44 object-cover" />
+          <div class="p-7 space-y-3">
+            <span class="text-xs font-bold text-accent-600 uppercase tracking-widest bg-orange-100 px-2 py-1 rounded-full">Mentorship</span>
+            <h3 class="text-xl font-black text-gray-900">Personal Mentor Program</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Each student is matched with an experienced professional mentor from their specific field who guides them and answers their questions throughout the program. This personal relationship is the heart of what we offer, and often evolves into a professional partnership that lasts for years.
+            </p>
+            <ul class="space-y-1.5 text-sm text-gray-500">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent-500 rounded-full"></span>2 dedicated sessions per week</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent-500 rounded-full"></span>Personalized development plan</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent-500 rounded-full"></span>Ongoing progress evaluation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Program 3: Holiday Training -->
+        <div class="card-hover bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl overflow-hidden shadow-sm border border-green-100">
+          <img src="https://source.unsplash.com/600x300/?training,workshop,teamwork"
+               alt="Holiday Training"
+               class="w-full h-44 object-cover" />
+          <div class="p-7 space-y-3">
+            <span class="text-xs font-bold text-green-700 uppercase tracking-widest bg-green-100 px-2 py-1 rounded-full">Holiday Training</span>
+            <h3 class="text-xl font-black text-gray-900">Intensive Holiday Placement</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Our flagship program: students spend 4–6 weeks inside a real company during the summer or winter break, contributing to live projects, learning from professionals daily, and finishing with a formal presentation of their work to company leadership.
+            </p>
+            <ul class="space-y-1.5 text-sm text-gray-500">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>4–6 weeks inside a company</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Final capstone presentation</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Official professional reference letter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE / TESTIMONIALS SECTION
+  ============================================================ -->
+  <section id="experience" class="py-20 lg:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-500 font-bold text-sm uppercase tracking-widest">What They Say</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-gray-900">Experiences That Changed Everything</h2>
+        <div class="section-divider mx-auto mt-4"></div>
+        <p class="mt-5 text-gray-500 text-base leading-relaxed">
+          Hear from the students who lived the Khotwah experience — in their own words, with their own honesty.
+        </p>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Testimonial 1 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 space-y-5">
+          <div class="text-5xl text-primary-200 font-serif leading-none select-none">"</div>
+          <p class="text-gray-700 text-base leading-relaxed -mt-4">
+            Before Khotwah, I thought I knew what a work environment felt like. But the moment I sat in a real boardroom, contributing to a live strategic discussion with a professional team, I realized that everything I had learned in university was just the prologue — and the real story only begins when you take that first step.
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <img src="https://source.unsplash.com/100x100/?portrait,young,man,student"
+                 alt="Sultan Al-Otaibi"
+                 class="w-11 h-11 rounded-full object-cover ring-2 ring-primary-100" />
+            <div>
+              <p class="font-bold text-gray-900 text-sm">Sultan Al-Otaibi</p>
+              <p class="text-xs text-gray-400">Engineering Student — Summer 2024 Cohort</p>
+            </div>
+            <div class="ml-auto flex gap-0.5">
+              <span class="text-accent-400 text-sm">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 space-y-5">
+          <div class="text-5xl text-accent-200 font-serif leading-none select-none">"</div>
+          <p class="text-gray-700 text-base leading-relaxed -mt-4">
+            I never imagined a summer holiday could completely redirect my path. During the weeks I spent with the marketing team, I discovered a genuine passion I never knew existed in me. My mentor wasn't just a supervisor — he was a true inspiration who pushed me past my own self-imposed limits and made me believe in capabilities I hadn't even recognized in myself.
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <img src="https://source.unsplash.com/100x100/?portrait,young,woman,student"
+                 alt="Reem Al-Shahrani"
+                 class="w-11 h-11 rounded-full object-cover ring-2 ring-accent-100" />
+            <div>
+              <p class="font-bold text-gray-900 text-sm">Reem Al-Shahrani</p>
+              <p class="text-xs text-gray-400">Business Administration Student — Summer 2024 Cohort</p>
+            </div>
+            <div class="ml-auto flex gap-0.5">
+              <span class="text-accent-400 text-sm">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="card-hover bg-white rounded-2xl p-7 shadow-sm border border-gray-100 space-y-5">
+          <div class="text-5xl text-green-200 font-serif leading-none select-none">"</div>
+          <p class="text-gray-700 text-base leading-relaxed -mt-4">
+            What impressed me most about Khotwah is that you are never treated as "the new intern who makes coffee." From day one, I was part of a real team, contributing to a live project, and carrying genuine responsibility. That kind of trust is what builds a person — and what transforms them into a professional who can confidently compete at the highest level.
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <img src="https://source.unsplash.com/100x100/?portrait,man,young,arab"
+                 alt="Abdullah Al-Qahtani"
+                 class="w-11 h-11 rounded-full object-cover ring-2 ring-green-100" />
+            <div>
+              <p class="font-bold text-gray-900 text-sm">Abdullah Al-Qahtani</p>
+              <p class="text-xs text-gray-400">Computer Science Student — Winter 2024 Cohort</p>
+            </div>
+            <div class="ml-auto flex gap-0.5">
+              <span class="text-accent-400 text-sm">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER & CONTACT SECTION
+  ============================================================ -->
+  <footer id="contact" class="bg-gray-900 text-white">
+
+    <!-- CTA Band -->
+    <div class="bg-gradient-to-r from-primary-800 to-primary-700 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-3xl sm:text-4xl font-black leading-tight">
+          Don't Wait Until Graduation —<br/>
+          <span class="text-accent-400">Start Now and Stand Apart from the Crowd</span>
+        </h2>
+        <p class="text-blue-200 text-lg leading-relaxed max-w-2xl mx-auto">
+          Every day you delay is a day of experience you're giving up. Join the hundreds of students who have already taken their first step and changed their professional trajectories forever. Spots in the next cohort are limited — register today.
+        </p>
+        <a href="registration.html"
+           class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold text-lg rounded-xl px-9 py-4 shadow-xl hover:shadow-2xl transition-all">
+          Enroll Now
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Main -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- Brand -->
+        <div class="space-y-4">
+          <a href="#" class="flex items-center gap-2 text-white font-black text-2xl">
+            <span class="bg-primary-700 rounded-lg px-2 py-0.5">K</span>
+            <span>hotwah</span>
+          </a>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            A student-led initiative bridging the gap between academic learning and the professional world through real, impactful workplace experiences at leading companies.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#about"      class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#goals"      class="hover:text-white transition-colors">Goals</a></li>
+            <li><a href="#mission"    class="hover:text-white transition-colors">Mission</a></li>
+            <li><a href="#products"   class="hover:text-white transition-colors">Programs</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors">Experience</a></li>
+            <li><a href="registration.html" class="hover:text-accent-400 transition-colors font-medium">Register</a></li>
+          </ul>
+        </div>
+
+        <!-- Social & Contact -->
+        <div>
+          <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Get in Touch</h4>
+          <ul class="space-y-3">
+
+            <!-- X / Twitter -->
+            <li>
+              <a href="https://x.com/khotwah" target="_blank" rel="noopener"
+                 class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                <span class="w-9 h-9 bg-gray-800 group-hover:bg-primary-700 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </span>
+                <span class="text-sm">@khotwah</span>
+              </a>
+            </li>
+
+            <!-- LinkedIn -->
+            <li>
+              <a href="https://linkedin.com/company/khotwah" target="_blank" rel="noopener"
+                 class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                <span class="w-9 h-9 bg-gray-800 group-hover:bg-primary-700 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </span>
+                <span class="text-sm">Khotwah on LinkedIn</span>
+              </a>
+            </li>
+
+            <!-- Email -->
+            <li>
+              <a href="mailto:hello@khotwah.sa"
+                 class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                <span class="w-9 h-9 bg-gray-800 group-hover:bg-primary-700 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </span>
+                <span class="text-sm">hello@khotwah.sa</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-10 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <p>© 2026 Khotwah Initiative. All rights reserved.</p>
+        <a href="index.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          التبديل إلى العربية
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu toggle script -->
+  <script>
+    const btn  = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    // Close menu on link click
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+  </script>
+
+</body>
+</html>
